@@ -15,7 +15,6 @@ function Login() {
   const [user, setUser] = useState<User | null>(null);
 
   const [isLogin, setIsLogin] = useAtom(isLoginAtom);
-  console.log("Login", isLogin);
 
   // 컴포넌트가 마운트될 때 한 번 실행되는 useEffect
   useEffect(() => {
@@ -34,7 +33,7 @@ function Login() {
       setSession(session);
       // 세션이 있으면 user 정보를, 없으면 null을 user state에 저장
       setUser(session?.user || null);
-      setIsLogin(true);
+      setIsLogin(!!session);
     });
 
     // 컴포넌트가 언마운트될 때 리스너를 정리

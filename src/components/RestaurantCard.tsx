@@ -30,7 +30,3 @@ export default function RestaurantCard({restaurant} : RestaurantProps) {
     </Link>
   );
 }
-
-// <p>{TITLE} : Restaurant </p>
-//        <p>{GUGUN_NM}</p>
-//        <p>{RPRSNTV_MENU}</p>

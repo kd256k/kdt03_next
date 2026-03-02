@@ -1,6 +1,5 @@
 export interface FestivalType {
- ADDR1 : string,
-  // ADDR2 : string,
+  ADDR1 : string,
   CNTCT_TEL :  string ,
   GUGUN_NM : string,
   HOMEPAGE_URL :  string,

@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function App01Layout({ children, }: { children: React.ReactNode; }) {
     return (
         <div className="h-full flex flex-col">
-            <aside className="flex justify-between h-16 bg-gray-300 p-5">
+            <aside className="flex justify-between h-16 bg-[#D3E1FB] p-5">
                 <h1 className="mb-5 text-2xl text-gray-800 font-bold">맛집 카테고리</h1>
                 <Link href="/"/>
                 <nav>

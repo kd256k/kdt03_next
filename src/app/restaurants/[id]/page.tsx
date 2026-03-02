@@ -26,9 +26,9 @@ const kakaoMapUrl = `https://map.kakao.com/link/map/${restaurant.MAIN_TITLE.repl
 const description = restaurant.ITEMCNTNTS.replace(/\\n/g, '\n' ) || '상세설명이 없습니다.';
 const usageTime = restaurant.USAGE_DAY_WEEK_AND_TIME.replace(/\\n/g, '\n' ) || '운영시간 정보가 없습니다.';
     return (
-    <main className="container max-auto p-4">
-        <h1 className="text 2xl font-bold mb-4">{restaurant.MAIN_TITLE}</h1>
-        <div className="gird grid-cols-1 md:grid-cols-3 gap-4">
+    <main className="w-full max-w-6xl mx-auto flex flex-col justify-start items-center px-6 py-4">
+        <h1 className="text-2xl font-bold mb-4">{restaurant.MAIN_TITLE}</h1>
+        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="w-full h-80 rounded-2xl overflow-hidden bg-gray-200">
                 {restaurant.MAIN_IMG_NORMAL ? (
                     <img src={restaurant.MAIN_IMG_NORMAL}
@@ -38,7 +38,7 @@ const usageTime = restaurant.USAGE_DAY_WEEK_AND_TIME.replace(/\\n/g, '\n' ) || '
                     <div className="h-full flex justify-center items-center text-gray-500">이미지 없음</div>
                 )}
             </div>
-            <div className="md:col-span-2 bg-white shadow-md rounded-lg">
+            <div className="md:col-span-2 bg-white shadow-md rounded-lg p-4">
                 <div className="grid grid-cols-1 md:grid-cols-6 gap-2 text-sm">
                     <div className="p-3 md:text-right font-medium text-gray-500">구군</div>
                     <div className="md:col-span-5 p-3">{restaurant.GUGUN_NM}</div>
@@ -69,7 +69,7 @@ const usageTime = restaurant.USAGE_DAY_WEEK_AND_TIME.replace(/\\n/g, '\n' ) || '
         </div>
         <div className="flex justify-center mt-6">
             <Link href="/restaurants"
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-6 py-2 rounded">
+                    className="bg-[#002046] hover:bg-[#2A5C96] text-white font-bold px-6 py-2 rounded">
                 목록으로
             </Link>
         </div>

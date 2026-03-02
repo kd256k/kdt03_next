@@ -10,12 +10,10 @@ export default function FestivalPage() {
   const [tdata, setTdata] = useState<FestivalType[]>([]);
   const [area, setArea] = useState<React.ReactElement[]>([]);
   const [areaFestival, setAreaFestival] = useState<FestivalType[]>([]);
-  // gu 변수 미선언 -- 체크하기
   const [gu, setGu] = useState<string | null>();
 
 
   const selRef = useRef<HTMLSelectElement>(null);
-  // sParams 변수 미선언 -- 체크하기s
   const sParams = useSearchParams();
 
   const handleChange = () => {
