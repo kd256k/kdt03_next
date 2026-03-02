@@ -5,11 +5,8 @@ import { useSearchParams } from "next/navigation";
 import type { FestivalType} from "./festival" ;
 import TailCard from "../../components/TailCard"
 
-// Link 경로 'react-router-dom' 확인
-
-// 타입 선언 위치 ; 변수명 : _  , / arr : number[]
-//
 export default function FestivalPage() {
+  const [loading, setLoading] = useState(true);
   const [tdata, setTdata] = useState<FestivalType[]>([]);
   const [area, setArea] = useState<React.ReactElement[]>([]);
   const [areaFestival, setAreaFestival] = useState<FestivalType[]>([]);
@@ -34,18 +31,22 @@ export default function FestivalPage() {
 
 
   const getFetchData = async () => {
+    setLoading(true);
     const apikey = process.env.NEXT_PUBLIC_API_KEY;
-    const baseUrl = `https://apis.data.go.kr/dataApi/6260000/FestivalService/getFestivalKr`;
+    const baseUrl = `/api/6260000/FestivalService/getFestivalKr`;
     let url = `${baseUrl}?serviceKey=${apikey}`;
     url = `${url}&pageNo=1&numOfRows=45&resultType=json`;
 
-    
+    try{
       const resp = await fetch(url);
-      const data = await resp.json();
-      setTdata(data.getFestivalKr.item)
-
-    console.log(url)
-   
+      const text = await resp.text();
+      const data = JSON.parse(text);
+      setTdata(data.getFestivalKr.item);
+    } catch (error) {
+      console.error("Festival API 에러:", error);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -64,7 +65,7 @@ export default function FestivalPage() {
       handleChange();
     }
 
-    if (selRef.current.value = ""){
+    if (selRef.current.value === ""){
       setGu('');
       setAreaFestival([]);
     }
@@ -86,33 +87,42 @@ export default function FestivalPage() {
   }, [tdata]);
 
   return (
-    <div>
-      <div className="w-full h-full flex flex-col justify-start items-center">
-        <div className="w-9/10 p-5 h-1/4   
-                                bg-amber-50 
-                                flex flex-col justify-center items-center" >
-          <h1 className="w-9/10 p-4 text-2xl font-bold text-center">
-            부산축제정보
-          </h1>
-          <div className="w-9/10 flex justify-center items-center">
+      <div className="w-full min-h-full flex flex-col justify-start items-center">
+        <h1 className="w-[70%] m-6 mb-0 p-4 text-2xl text-gray-800 font-bold text-center
+                        bg-[#D3E1FB] rounded-t-lg">
+          부산축제정보
+        </h1>
+        <div className="sticky top-0 z-10 w-[70%] bg-[#D3E1FB] rounded-b-lg p-3 flex justify-center items-center">
             <select name="sel1"
               ref={selRef}
               value={gu ? gu : ""}
-              className='w-1/3 bg-gray-50 border border-gray-300 text-gray-900
-                                  rounded-lg focus:ring-blue-500 focus:border-blue-500 block
-                                  p-2.5'
+              className='w-1/3 bg-gray-50 border border-gray-300 text-gray-900 text-sm
+                          rounded-lg focus:ring-[#003675] focus:border-[#003675] block p-2.5'
               onChange={handleChange}>
-
               <option value="">--- 지역을 선택하세요---</option>
               {area}
             </select>
-          </div>
         </div>
-        <div className="mt-4 w-9/10 h-3/4 overflow-y-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {loading && (
+          <div className="mt-4 w-[70%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+            {Array(6).fill(0).map((_,i) => (
+              <div key={i} className="w-full bg-white rounded-lg shadow overflow-hidden animate-pulse">
+                <div className="h-48 bg-gray-200"></div>
+                <div className="p-4">
+                  <div className="h-5 bg-gray-200 rounded w-3/4 mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
+                  <div className="h-3 bg-gray-200 rounded w-2/3"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        {!loading && <div className="mt-4 w-[70%] grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 justify-items-center">
           {
             areaFestival.map((item, idx) =>  <Link
                                               href={`/festival/contents?item=${encodeURIComponent(JSON.stringify(item))}`}
-                                              key={item.UC_SEQ + idx}>
+                                              key={item.UC_SEQ + idx}
+                                              className="block w-full">
               <TailCard key={item.UC_SEQ}
                         imgUrl={item.MAIN_IMG_THUMB}
                         title={item.MAIN_TITLE.includes('(') ? item.MAIN_TITLE.split('(')[0] : item.MAIN_TITLE}
@@ -122,10 +132,7 @@ export default function FestivalPage() {
             </Link>
             )
           }
-        </div>
+        </div>}
       </div>
-    </div>
   )
 }
-
-// getFetchDate 함수 사용 시 -> try-catch

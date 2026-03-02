@@ -33,7 +33,7 @@ export default function TodoList() {
     //console.log(localStorage.getItem("todo"));
     // 문자열 -> 자바스크립트 객체 (getter) , string->object로 가져오기
     const local = localStorage.getItem("todo");
-    const localTodos = JSON.parse( local == null ? "" : local ) ;
+    const localTodos = local ? JSON.parse(local) : [];
     // 값이 numll이면 빈배열 있으면 parse
 
 
@@ -53,8 +53,8 @@ export default function TodoList() {
 
   return (
     <div className="w-full flex flex-col justify-start items-center ">
-      <h1 className="w-full max-w-3xl font-bold text-center mt-2" >할일목록</h1>
-      <div className="w-full max-w-3xl p-5 my-2 font-bold border bg-amber-100">
+      <h1 className="w-full max-w-3xl text-2xl font-bold text-center mt-10" >할 일 목록</h1>
+      <div className="w-full max-w-3xl p-5 my-2 font-bold bg-amber-50 border border-amber-300">
         전체 : {todos.length}개 |
         완료 : {completed}개 |
         미완료 :{incomplete}개

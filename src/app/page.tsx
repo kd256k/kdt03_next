@@ -17,10 +17,6 @@ function Login() {
   const [isLogin, setIsLogin] = useAtom(isLoginAtom);
   console.log("Login", isLogin);
 
-  const redirectUrl = process.env.NODE_ENV === 'production'
-  ? 'https://kdt03-react-2fkt.vercel.app/'
-  : 'http://localhost:5173';
-
   // 컴포넌트가 마운트될 때 한 번 실행되는 useEffect
   useEffect(() => {
     // 현재 세션 정보를 가져와서 session state를 업데이트
@@ -51,9 +47,6 @@ function Login() {
     await supabase.auth.signInWithOAuth({
       provider: 'github',
     });
-    useEffect(() => {
-      if (session) setIsLogin(true);
-    }, [session]);
   };
 
   // 로그아웃하는 비동기 함수
@@ -65,11 +58,11 @@ function Login() {
   // 세션이 없는 경우 (로그인되지 않은 상태)
   if (!session) {
     return (
-      <div className="flex flex-col items-center justify-center h-full">
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)]">
         <h1 className="text-2xl font-bold mb-4">로그인</h1>
         <button
           onClick={signInWithGithub} // 버튼 클릭 시 GitHub으로 로그인 함수 호출
-          className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700"
+          className="px-4 py-2 bg-[#003675] text-white rounded hover:bg-[#2A5C96]"
         >
           GitHub으로 로그인
         </button>
@@ -79,7 +72,7 @@ function Login() {
     // 세션이 있는 경우 (로그인된 상태)
    
     return (
-      <div className="flex flex-col items-center justify-center h-full">
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)]">
         {/* 사용자 이름 또는 이메일을 환영 메시지에 표시 */}
         <h1 className="text-2xl font-bold mb-4">환영합니다, {user?.user_metadata?.user_name || user?.email}!</h1>
         {/* 사용자 이메일 표시 */}

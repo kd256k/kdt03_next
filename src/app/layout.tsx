@@ -25,9 +25,9 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className='w-full h-screen flex flex-col overflow-y-hidden'>
+        <div className='w-full min-h-screen flex flex-col'>
           <Header />
-          <main className='flex flex-col grow overflow-y-auto'>
+          <main className='flex flex-col grow py-6'>
             {children}
           </main>
           <Footer />

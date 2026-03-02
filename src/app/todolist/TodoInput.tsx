@@ -34,9 +34,9 @@ export default function TodoInput({todos, setTodos} : TodoInputProps) {
     <div className="w-full max-w-3xl flex justify-center items-center my-4" >
         <input type="text" 
                 ref = {inRef}
-                className="flex-1 p-2 border border-amber-50
+                className="flex-1 p-2 bg-gray-50 border border-gray-200
                                       rounded-sm
-                                      focus:outline-none focus:ring-2 focus:ring-blue-200"
+                                      focus:outline-none focus:ring-[#003675] focus:border-[#003675]"
              />
                 
         <TailButton caption="추가" color="blue" onHandle={Add}/>

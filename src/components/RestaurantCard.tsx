@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Image from "next/image";
 import type { Restaurant } from "@/types/restaurant";
 
 interface RestaurantProps {
@@ -16,12 +15,9 @@ export default function RestaurantCard({restaurant} : RestaurantProps) {
       <div className="relative w-full h-48 bg-gray-200">  
         {
           restaurant.MAIN_IMG_NORMAL ? (
-            <Image src={restaurant.MAIN_IMG_NORMAL} 
-                            alt={restaurant.TITLE}
-                            fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            style={{objectFit : 'cover'}}
-                            priority/>
+            <img src={restaurant.MAIN_IMG_NORMAL}
+            alt={restaurant.TITLE}
+            className="w-full h-full object-cover" />
 
           ) : (
             <div className="h-full flex justify-center items-center">이미지없음</div>
