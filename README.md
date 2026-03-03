@@ -1,4 +1,4 @@
-# KDT03 Next.js 포트폴리오 | KDT03 Next.js Portfolio
+# KDT03 Next.js 
 
 ## 프로젝트 소개 | About
 
