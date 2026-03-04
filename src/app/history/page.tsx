@@ -61,7 +61,6 @@ export default function Home() {
       }
       // The onAuthStateChange listener will handle the successful login and redirection
     } catch (err) {
-      console.log(err);
       alert('로그인 중 오류가 발생했습니다.');
     } finally {
       setLoading(false);
