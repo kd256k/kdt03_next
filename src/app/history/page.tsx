@@ -33,7 +33,7 @@ export default function Home() {
   // Redirect if user is logged in
   useEffect(() => {
     if (user) {
-      router.push('/history');
+      router.push('/');
     }
   }, [user, router]);
 
