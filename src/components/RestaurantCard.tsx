@@ -5,6 +5,19 @@ interface RestaurantProps {
   restaurant : Restaurant
 }
 
+const getGradient = (name: string) => {
+  const gradients = [
+    "from-orange-200 to-red-300",
+    "from-yellow-200 to-orange-300",
+    "from-green-200 to-teal-300",
+    "from-blue-200 to-indigo-300",
+    "from-pink-200 to-rose-300",
+    "from-purple-200 to-violet-300",
+  ]
+  const index = name.charCodeAt(0) % gradients.length
+  return gradients[index]
+}
+
 export default function RestaurantCard({restaurant} : RestaurantProps) {
   return (
     
@@ -20,11 +33,15 @@ export default function RestaurantCard({restaurant} : RestaurantProps) {
             className="w-full h-full object-cover" />
 
           ) : (
-            <div className="h-full flex justify-center items-center">이미지없음</div>
+            <div className={`h-full flex items-center justify-center bg-gradient-to-br ${getGradient(restaurant.TITLE)}`}>
+              <span className="text-5xl font-bold text-white drop-shadow-md">
+                {restaurant.TITLE[0]}
+              </span>
+            </div>
           )
         }
       </div>
-        <h2 className="text-lg font-bold truncate mt-2 not-first:px-4">{restaurant.TITLE}</h2>
+        <h2 className="text-lg font-bold truncate mt-2 px-4">{restaurant.TITLE}</h2>
         <p className="text-sm text-gray-600 my-2 px-4">{restaurant.GUGUN_NM}</p>
         <p className="text-sm text-gray-800 my-2 truncate px-4"> 대표메뉴 : {restaurant.RPRSNTV_MENU}</p>
     </Link>
