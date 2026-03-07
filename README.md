@@ -11,6 +11,7 @@ https://kdt03-next-iota.vercel.app
 ## 기술 스택
 
 - **Framework**: Next.js 15 (App Router), TypeScript
+- **Library**: React 19
 - **Styling**: Tailwind CSS 4, KRDS Navy 디자인 시스템
 - **Auth**: Supabase (GitHub OAuth)
 - **State**: Jotai
