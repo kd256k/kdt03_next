@@ -2,19 +2,7 @@ import Link from 'next/link'
 import type { Restaurant } from "@/types/restaurant";
 import RestaurantData from "@/data/부산맛집.json"
 import { notFound } from 'next/navigation';
-
-const getGradient = (name: string) => {
-  const gradients = [
-    "from-orange-200 to-red-300",
-    "from-yellow-200 to-orange-300",
-    "from-green-200 to-teal-300",
-    "from-blue-200 to-indigo-300",
-    "from-pink-200 to-rose-300",
-    "from-purple-200 to-violet-300",
-  ]
-  const index = name.charCodeAt(0) % gradients.length
-  return gradients[index]
-}
+import RestaurantImage from '@/components/RestaurantImage';
 
 interface RestaurantDetailProps {
     params : Promise<{
@@ -43,18 +31,7 @@ const usageTime = restaurant.USAGE_DAY_WEEK_AND_TIME.replace(/\\n/g, '\n' ) || '
         <h1 className="text-2xl font-bold mb-4">{restaurant.MAIN_TITLE}</h1>
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="w-full h-80 rounded-2xl overflow-hidden bg-gray-200">
-                {restaurant.MAIN_IMG_NORMAL ? (
-                    <img src={restaurant.MAIN_IMG_NORMAL}
-                        alt={restaurant.TITLE}
-                        className="w-full h-full object-cover"
-                        referrerPolicy="no-referrer" />
-                ) : (
-                    <div className={`h-full flex items-center justify-center bg-gradient-to-br ${getGradient(restaurant.MAIN_TITLE)}`}>
-                        <span className="text-5xl font-bold text-white drop-shadow-md">
-                            {restaurant.MAIN_TITLE.slice(0, 5)}
-                        </span>
-                    </div>
-                )}
+                <RestaurantImage src={restaurant.MAIN_IMG_NORMAL} title={restaurant.TITLE} />
             </div>
             <div className="md:col-span-2 bg-white shadow-md rounded-lg p-4">
                 <div className="grid grid-cols-1 md:grid-cols-6 gap-2 text-sm">
