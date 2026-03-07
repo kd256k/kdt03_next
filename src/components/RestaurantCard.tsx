@@ -35,7 +35,7 @@ export default function RestaurantCard({restaurant} : RestaurantProps) {
           ) : (
             <div className={`h-full flex items-center justify-center bg-gradient-to-br ${getGradient(restaurant.TITLE)}`}>
               <span className="text-5xl font-bold text-white drop-shadow-md">
-                {restaurant.TITLE[0]}
+                {restaurant.TITLE[4]}
               </span>
             </div>
           )
