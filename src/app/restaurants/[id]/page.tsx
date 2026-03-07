@@ -3,6 +3,19 @@ import type { Restaurant } from "@/types/restaurant";
 import RestaurantData from "@/data/부산맛집.json"
 import { notFound } from 'next/navigation';
 
+const getGradient = (name: string) => {
+  const gradients = [
+    "from-orange-200 to-red-300",
+    "from-yellow-200 to-orange-300",
+    "from-green-200 to-teal-300",
+    "from-blue-200 to-indigo-300",
+    "from-pink-200 to-rose-300",
+    "from-purple-200 to-violet-300",
+  ]
+  const index = name.charCodeAt(0) % gradients.length
+  return gradients[index]
+}
+
 interface RestaurantDetailProps {
     params : Promise<{
         id : string
@@ -35,7 +48,11 @@ const usageTime = restaurant.USAGE_DAY_WEEK_AND_TIME.replace(/\\n/g, '\n' ) || '
                         alt={restaurant.TITLE}
                         className="w-full h-full object-cover" />
                 ) : (
-                    <div className="h-full flex justify-center items-center text-gray-500">이미지 없음</div>
+                    <div className={`h-full flex items-center justify-center bg-gradient-to-br ${getGradient(restaurant.MAIN_TITLE)}`}>
+                        <span className="text-5xl font-bold text-white drop-shadow-md">
+                            {restaurant.MAIN_TITLE.slice(0, 4)}
+                        </span>
+                    </div>
                 )}
             </div>
             <div className="md:col-span-2 bg-white shadow-md rounded-lg p-4">
