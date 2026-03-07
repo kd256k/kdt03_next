@@ -46,11 +46,12 @@ const usageTime = restaurant.USAGE_DAY_WEEK_AND_TIME.replace(/\\n/g, '\n' ) || '
                 {restaurant.MAIN_IMG_NORMAL ? (
                     <img src={restaurant.MAIN_IMG_NORMAL}
                         alt={restaurant.TITLE}
-                        className="w-full h-full object-cover" />
+                        className="w-full h-full object-cover"
+                        referrerPolicy="no-referrer" />
                 ) : (
                     <div className={`h-full flex items-center justify-center bg-gradient-to-br ${getGradient(restaurant.MAIN_TITLE)}`}>
                         <span className="text-5xl font-bold text-white drop-shadow-md">
-                            {restaurant.MAIN_TITLE.slice(0, 4)}
+                            {restaurant.MAIN_TITLE.slice(0, 5)}
                         </span>
                     </div>
                 )}
