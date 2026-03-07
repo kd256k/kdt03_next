@@ -1,25 +1,28 @@
-# KDT03 Next.js 포트폴리오
+# KDT03 Next.js
 
 ## 프로젝트 소개
 
 AI 데이터 분석 풀스택 웹 개발자 양성과정(2025 3기) Next.js 기반 포트폴리오 웹 애플리케이션입니다.
 공공 API 연동, Supabase 인증 시스템, 다양한 UI 컴포넌트를 활용한 프로젝트입니다.
 
+## 배포 | Live Demo
+https://kdt03-next-iota.vercel.app
+
 ## 기술 스택
 
-- **Framework**: Next.js 16 (App Router), TypeScript
+- **Framework**: Next.js 15 (App Router), TypeScript
 - **Styling**: Tailwind CSS 4, KRDS Navy 디자인 시스템
-- **Auth**: Supabase (GitHub OAuth, Email/Password)
+- **Auth**: Supabase (GitHub OAuth)
 - **State**: Jotai
 - **API**: 부산 공공데이터 포털 (축제, 맛집), Supabase
 
 ## 주요 기능
 
-- **로그인**: GitHub OAuth 및 이메일/비밀번호 인증 (Supabase)
-- **축제 정보**: 부산 축제 목록 조회 및 상세 정보 (구군별 필터링, Skeleton UI)
-- **맛집 정보**: 부산 맛집 목록 및 상세 페이지 (Supabase DB, 무한 스크롤)
-- **맛집 목록**: JSON 데이터 기반 목록/상세 (동적 라우팅)
+- **로그인**: GitHub OAuth 인증 (Supabase)
 - **로또 번호 생성기**: 랜덤 번호 생성 UI
+- **축제 정보**: 부산 축제 목록 조회 및 상세 정보 (구군별 필터링, Skeleton UI)
+- **맛집 정보 (API)**: Supabase DB 연동, 무한 스크롤 (`/busanFood`)
+- **맛집 정보 (Static)**: JSON 데이터 기반 동적 라우팅 (`/restaurants`)
 - **할일 목록**: localStorage 기반 Todo 앱
 
 ## 페이지 구성
